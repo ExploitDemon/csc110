@@ -22,6 +22,7 @@ def main():
 
       print(excerpt, end="")  # Print the excerpt without a newline character at the end
 
-
-if __name__ == "__main__":
-      main()
+#
+# if __name__ == "__main__":
+#       main()
+main()
