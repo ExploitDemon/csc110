@@ -3,6 +3,7 @@ Cole Leavitt
 CSC110
 Programming Project 1
 This program implements functions to calculate the area of different geometric shapes.
+GIT commit hash::: ada454c4b42e1f64133eac4a03de03a15eb1dfb0
 '''
 
 # Define the base class for shapes
