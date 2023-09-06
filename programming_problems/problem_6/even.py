@@ -18,9 +18,8 @@ def is_even():
                 return True
             else:
                 return False
-        except:
-            print("Not a int :/")
+        except IndexError:
+            print("Not a int :")
 
-
-result = is_even()
-print(result)
+# result = is_even()
+# print(result)
