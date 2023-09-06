@@ -19,4 +19,3 @@ def check_eligibility(age):
             return False
     except ValueError:
         return False
-
