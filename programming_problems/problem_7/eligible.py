@@ -9,7 +9,6 @@ def validate_age(age):
         return False
 
 
-
 def check_eligibility(age):
     try:
         age = int(age)
