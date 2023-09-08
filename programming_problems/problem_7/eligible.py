@@ -39,3 +39,4 @@ print(validate_age("300"))    # False
 print(check_eligibility(20))   # True
 print(check_eligibility(15))   # False
 
+
