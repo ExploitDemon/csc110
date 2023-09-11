@@ -8,4 +8,5 @@ def calculate_year_born():
         except ValueError:
             print("invalid input")
 
+
 calculate_year_born()
