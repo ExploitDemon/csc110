@@ -8,15 +8,14 @@ This program defines functions to calculate and analyze grades.
 
 
 def letter_grade(grade):
-    '''
+    """
     This function returns the letter grade based on a numeric grade.
 
-    Args:
         grade (float): The numeric grade.
 
     Returns:
         str: The letter grade (A, B, C, D, E, or X).
-    '''
+    """
     if 90 <= grade <= 100:
         return "A"
     elif 80 <= grade < 90:
@@ -32,15 +31,15 @@ def letter_grade(grade):
 
 
 def pass_or_fail(_letter_grade):
-    '''
+    """
     This function determines if a letter grade represents a pass or fail.
 
     Args:
         _letter_grade (str): The letter grade.
 
-    Returns:
-        str: "Pass" if the grade is A, B, C, or D, "Fail" if the grade is E, "Error" if the input is not a single letter.
-    '''
+    Returns: str: "Pass" if the grade is A, B, C, or D, "Fail" if the grade is E, "Error" if the input is not a
+    single letter.
+    """
     if len(_letter_grade) != 1:
         return "Error"
 
