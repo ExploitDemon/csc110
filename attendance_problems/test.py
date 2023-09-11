@@ -1,7 +1,11 @@
 def calculate_year_born():
-    try:
-        age = int(input("Enter your age?: "))
-        year_born = (2023 - age)
-        return year_born
-    except IndexError:
-        print("invalid input")
+    while True:
+        try:
+            age = int(input("Enter your age?: "))
+            year_born = (2023 - age)
+            print(f"You were born in {year_born}")
+            return year_born
+        except ValueError:
+            print("invalid input")
+
+calculate_year_born()
