@@ -1,12 +1,12 @@
-# def validate_age(age):
-#     try:
-#         age = int(age)
-#         if 0 <= age <= 110:
-#             return True
-#         else:
-#             return False
-#     except ValueError:
-#         return False
+def validate_age(age):
+    try:
+        age = int(age)
+        if 0 <= age <= 110:
+            return True
+        else:
+            return False
+    except ValueError:
+        return False
 
 
 def check_eligibility(age):
@@ -20,13 +20,13 @@ def check_eligibility(age):
         return False
 
 
-def validate_age(age):
-    if age.isdigit():  # Check if the string consists of only digits
-        age_as_int = int(age)
-        if 0 <= age_as_int <= 110:
-            return True
-    else:
-        return False
+# def validate_age(age):
+#     if age.isdigit():  # Check if the string consists of only digits
+#         age_as_int = int(age)
+#         if 0 <= age_as_int <= 110:
+#             return True
+#     else:
+#         return False
 
 
 # def validate_age(age):
@@ -40,8 +40,8 @@ def validate_age(age):
 #         return False
 
 
-def check_eligibility(age):
-    return age >= 18
+# def check_eligibility(age):
+#     return age >= 18
 
 
 # Test cases
