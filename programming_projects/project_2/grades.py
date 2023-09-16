@@ -2,7 +2,7 @@
 Cole Leavitt
 Giit Commit Hash: 034e241f582adbced08ea78a5ca4cef74848f773
 CSC110
-Assignment - 1
+Programming Project 2
 This program defines functions to calculate and analyze grades.
 """
 

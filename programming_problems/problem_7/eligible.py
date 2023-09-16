@@ -25,9 +25,7 @@ def check_eligibility(age):
 #         age_as_int = int(age)
 #         if 0 <= age_as_int <= 110:
 #             return True
-#     else:
-#         return False
-
+#     return False
 
 # def validate_age(age):
 #     if age.isdigit():  # Check if the string consists of only digits
