@@ -62,6 +62,7 @@ def range_of_three(x, y, z):
         max = y
     if z > max:
         max = z
+
     min = x
     if y < min:
         min = y
