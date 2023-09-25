@@ -107,7 +107,7 @@ def main():
 
     # Test get_grade_results function
     print(get_grade_results(0, 100))  # Your grade is 0.0 (E - Fail)
-    print(get_grade_results(45, 80))  # Your grade is 56.25 (D - Pass)
+    print(get_grade_results(45, 80))  # Your grade is 56.25 (E - Fail)
     print(get_grade_results(37, 40))  # Your grade is 92.5 (A - Pass)
 
 
