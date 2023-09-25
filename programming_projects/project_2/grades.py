@@ -80,7 +80,7 @@ def get_grade_results(score, total_points):
     point_grade_value = point_grade(score, total_points)
     letter_grade_value = letter_grade(point_grade_value)
     pass_fail_status = pass_or_fail(letter_grade_value)
-    result = f"Your grade is {point_grade_value} ({letter_grade_value} - {pass_fail_status})"
+    result = "Your grade is " + str(point_grade_value) + " (" + letter_grade_value + " - " + pass_fail_status + ")"
     return result
 
 
