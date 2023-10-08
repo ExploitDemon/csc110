@@ -15,7 +15,7 @@ def main():
         f"expected return value was an empty string, but function returned {value}"
 
     value = concatenate(["", "", ""])
-    assert value == "  ", \
+    assert value == "    ", \
         f"expected return value was an \"  \", but function returned {value}"
 
     value = concatenate(["Hi", "there"])
