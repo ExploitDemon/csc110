@@ -1,8 +1,25 @@
+"""
+Cole Leavitt
+CSC110 Project -4
+This program implements a simple chess game and includes functions to create the
+board, print the board, check for valid moves, move pieces, and check for end of game.
+"""
+
+
 def create_board():
+    """Create a chess board."""
     return ["WKi", "WKn", "WKn", "EMPTY", "EMPTY", "EMPTY", "BKn", "BKn", "BKi"]
 
 
 def printable_board(board):
+    """Create a printable version of the board.
+
+    Args:
+        board: The chess board.
+
+    Returns:
+        A string representing the printable board.
+    """
     # Replace "EMPTY" with "     "
     board = [cell if cell != "EMPTY" else "   " for cell in board]
 
@@ -15,6 +32,16 @@ def printable_board(board):
 
 
 def is_valid_move(board, position, player):
+    """Check if a move is valid.
+
+    Args:
+        board: The chess board.
+        position: The position to move.
+        player: The player making the move.
+
+    Returns:
+        True if the move is valid, False otherwise.
+    """
     if 0 <= position < len(board):
         if player == "WHITE" and board[position].startswith("W"):
             return True
@@ -24,6 +51,13 @@ def is_valid_move(board, position, player):
 
 
 def move_king(board, position, direction):
+    """Move the king on the board.
+
+    Args:
+        board: The chess board.
+        position: The position of the king.
+        direction: The direction to move the king.
+    """
     if direction == "LEFT":
         new_position = position - 1
     else:
@@ -35,6 +69,13 @@ def move_king(board, position, direction):
 
 
 def move_knight(board, position, direction):
+    """Move the knight on the board.
+
+    Args:
+        board: The chess board.
+        position: The position of the knight.
+        direction: The direction to move the knight.
+    """
     new_position = position + (2 if direction == "RIGHT" else -2)
 
     if 0 <= new_position < len(board):
@@ -42,18 +83,40 @@ def move_knight(board, position, direction):
 
 
 def move(board, position, direction):
+    """Move a piece on the board.
+
+    Args:
+        board: The chess board.
+        position: The position of the piece.
+        direction: The direction to move the piece.
+    """
     if board[position].endswith("Ki"):
         move_king(board, position, direction)
     else:
-
         move_knight(board, position, direction)
 
 
 def is_game_over(board):
+    """Check if the game is over.
+
+    Args:
+        board: The chess board.
+
+    Returns:
+        True if the game is over, False otherwise.
+    """
     return "WKi" not in board or "BKi" not in board
 
 
 def whos_the_winner(board):
+    """Determine the winner of the game.
+
+    Args:
+        board: The chess board.
+
+    Returns:
+        The winner of the game, or None if the game is not over.
+    """
     if "WKi" not in board:
         return "Black"
     elif "BKi" not in board:
@@ -81,12 +144,12 @@ def test_printable_board():
 
 def test_is_valid_move():
     board = create_board()
-    assert is_valid_move(board, 0, "WHITE") == True
-    assert is_valid_move(board, 1, "BLACK") == False
-    assert is_valid_move(board, 9, "BLACK") == False
-    assert is_valid_move(board, -1, "BLACK") == False
-    assert is_valid_move(board, 6, "BLACK") == True
-    assert is_valid_move(board, 2, "WHITE") == False
+    assert is_valid_move(board, 0, "WHITE") is True
+    assert is_valid_move(board, 1, "BLACK") is False
+    assert is_valid_move(board, 9, "BLACK") is False
+    assert is_valid_move(board, -1, "BLACK") is False
+    assert is_valid_move(board, 6, "BLACK") is True
+    assert is_valid_move(board, 2, "WHITE") is False
 
 
 def test_move_king():
@@ -103,7 +166,7 @@ def test_move_knight():
 
 def test_is_game_over():
     board = create_board()
-    assert is_game_over(board) == False
+    assert is_game_over(board) is False
 
 
 def test_whos_the_winner():
@@ -112,7 +175,7 @@ def test_whos_the_winner():
 
 
 def main():
-    # Run the test cases
+    """Run the test cases."""
     test_create_board()
     test_printable_board()
     test_is_valid_move()
