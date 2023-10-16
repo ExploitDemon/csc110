@@ -11,6 +11,25 @@ def create_board():
     return ["WKi", "WKn", "WKn", "EMPTY", "EMPTY", "EMPTY", "BKn", "BKn", "BKi"]
 
 
+# def printable_board(board):
+#     """Create a printable version of the board.
+#
+#     Args:
+#         board: The chess board.
+#
+#     Returns:
+#         A string representing the printable board.
+#     """
+#     # Replace "EMPTY" with "     "
+#     board = [cell if cell != "EMPTY" else "   " for cell in board]
+#
+#     # Create the printable board
+#     printable = "+-----------------------------------------------------+\n"
+#     printable += "| {} | {} | {} | {} | {} | {} | {} | {} | {} |\n".format(*board)
+#     printable += "+-----------------------------------------------------+"
+#
+#     return printable
+
 def printable_board(board):
     """Create a printable version of the board.
 
@@ -20,12 +39,24 @@ def printable_board(board):
     Returns:
         A string representing the printable board.
     """
-    # Replace "EMPTY" with "     "
-    board = [cell if cell != "EMPTY" else "   " for cell in board]
+    # Replace "EMPTY" with "   "
+    new_board = []
+    for cell in board:
+        if cell == "EMPTY":
+            new_board.append("   ")
+        else:
+            new_board.append(cell)
 
     # Create the printable board
     printable = "+-----------------------------------------------------+\n"
-    printable += "| {} | {} | {} | {} | {} | {} | {} | {} | {} |\n".format(*board)
+    row = "|"
+    index = 0
+    for cell in new_board:
+        row += " " + cell + " |"
+        index += 1
+        if index % 9 == 0:
+            printable += row + "\n"
+            row = "|"
     printable += "+-----------------------------------------------------+"
 
     return printable
