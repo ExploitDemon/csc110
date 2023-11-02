@@ -31,11 +31,11 @@ def csv_to_list(file_name):
     """
     Reads a CSV file and converts the data into a list of strings.
 
-    Parameters:
-    file_name (str): The name of the CSV file.
+    Args:
+        file_name (str): The name of the CSV file.
 
     Returns:
-    list: A list of strings representing the data in the CSV file.
+        list: A list of strings representing the data in the CSV file.
     """
     with open(file_name, "r", encoding="UTF-8") as file:
         data = []
@@ -57,14 +57,16 @@ def count_start_digits(list_of_numbers):
     """
     Counts the frequency of each leading digit (1-9) in the list of numbers.
 
-    Parameters:ask
-    numbers (list): A list of numbers.
+    Args:
+        list_of_numbers (list): A list of numbers.
 
-    Returns:
-    dict: A dictionary where the keys are the digits (1-9)
-     and the values are the counts of each digit.
+    Returns: dict: A dictionary where the keys are the digits (1-9) and the
+    values are the counts of each digit.
     """
-    counts = {i: 0 for i in range(1, 10)}  # Initialize counts for digits 1-9
+    counts = {}
+    for i in range(1, 10):
+        counts[i] = 0
+
     for number in list_of_numbers:
         if number[0] == "0":
             number = number.lstrip("0.")  # Remove leading zeros and decimal
@@ -79,8 +81,8 @@ def digit_percentages(counts):
     """
     Calculates the percentage of each leading digit in the dataset.
 
-    Parameters: counts (dict): A dictionary where the keys are the digits (
-    1-9) and the values are the counts of each digit.
+    Args: counts (dict): A dictionary where the keys are the digits (1-9) and
+    the values are the counts of each digit.
 
     Returns: dict: A dictionary where the keys are the digits (1-9) and the
     values are the percentages of each digit.
@@ -106,25 +108,25 @@ def check_benfords_law(percentages):
     Checks whether the calculated percentages follow Benford's Law within a
     certain tolerance.
 
-    Parameters: percentages (dict): A dictionary where the keys are the
-    digits (1-9) and the values are the percentages of each digit.
+    Args: percentages (dict): A dictionary where the keys are the digits (
+    1-9) and the values are the percentages of each digit.
 
     Returns:
-    bool: True if the data follows Benford's Law, False otherwise.
+        bool: True if the data follows Benford's Law, False otherwise.
     """
     benfords_law = {1: 30, 2: 17, 3: 12, 4: 9, 5: 7, 6: 6, 7: 5, 8: 5, 9: 4}
     for digit, percentage in percentages.items():
-        if not (benfords_law[digit] - 10 <= percentage
-                <= benfords_law[digit] + 10):
+        if not (benfords_law[digit] - 10 <= percentage <= benfords_law[digit] + 10):
             return False
     return True
 
 
 def main():
     """
-    Calls test cases
-    :return:
-    Nothing
+    Calls test cases.
+
+    Returns:
+        None.
     """
     # Change this line to read the "stocks.csv" file
     list_of_numbers = csv_to_list("populations.csv")
