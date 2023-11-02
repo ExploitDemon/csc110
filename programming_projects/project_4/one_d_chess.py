@@ -2,7 +2,8 @@
 Cole Leavitt
 CSC110 Project -4
 This program implements a simple chess game and includes functions to create the
-board, print the board, check for valid moves, move pieces, and check for end of game.
+board, print the board, check for valid moves,
+move pieces, and check for end of game.
 """
 
 
@@ -12,11 +13,18 @@ def create_board():
     Returns:
         A list representing the chess board.
     """
-    return ["WKi", "WKn", "WKn", "EMPTY", "EMPTY", "EMPTY", "BKn", "BKn", "BKi"]
+    return [
+        "WKi",
+        "WKn",
+        "WKn",
+        "EMPTY",
+        "EMPTY",
+        "EMPTY",
+        "BKn",
+        "BKn",
+        "BKi",
+    ]
 
-
-# CSC110 Project -4
-# This program implements a simple chess game and includes functions to create the board, print the board, check for valid moves, move pieces, and check for end of game.
 
 # def printable_board(board):
 #     """Create a printable version of the board.
@@ -32,7 +40,8 @@ def create_board():
 #
 #     # Create the printable board
 #     printable = "+-----------------------------------------------------+\n"
-#     printable += "| {} | {} | {} | {} | {} | {} | {} | {} | {} |\n".format(*board)
+#    printable += ("| {} | {} | {} | {} | {} | {} "
+#                  "| {} | {} | {} |\n").format(*board)
 #     printable += "+-----------------------------------------------------+"
 #
 #     return printable
@@ -63,6 +72,7 @@ def printable_board(board):
         # Appends the items in the new_board to the row
         row += " " + cell + " |"
         index += 1
+        # Start a new row after every 9 cells
         if index % 9 == 0:
             printable += row + "\n"
             row = "|"
@@ -83,11 +93,15 @@ def is_valid_move(board, position, player):
         True if the move is valid, False otherwise.
     """
     if 0 <= position < len(board):
+        # Check if the player is "WHITE" and the piece at
+        # the position is a white piece
         # if player == "WHITE" and board[position].startswith("W"):
         if player == "WHITE" and board[position][0] == "W":
             return True
+        # Check if the player is "BLACK" and the piece at
+        # the position is a black piece
         # elif player == "BLACK" and board[position].startswith("B"):
-        elif player == "BLACK" and board[position][0] == "B":
+        if player == "BLACK" and board[position][0] == "B":
             return True
     return False
 
@@ -100,15 +114,20 @@ def move_king(board, position, direction):
         position: The position of the king.
         direction: The direction to move the king.
     """
+    # Determine the new position based on the direction
     if direction == "LEFT":
         new_position = position - 1
     else:
         new_position = position + 1
+
+    # Move the king until it reaches another piece or the end of the board
     while 0 <= new_position < len(board) and board[new_position] == "EMPTY":
         if direction == "RIGHT":
             new_position += 1
         else:
             new_position -= 1
+
+    # Swap the king with the piece at the new position
     if 0 <= new_position < len(board):
         # board[position] = "EMPTY", board[position]
         temp = board[position]
@@ -124,11 +143,13 @@ def move_knight(board, position, direction):
         position: The position of the knight.
         direction: The direction to move the knight.
     """
+    # Determine the new position based on the direction
     if direction == "RIGHT":
         new_position = position + 2
     else:
         new_position = position - 2
 
+    # Swap the knight with the piece at the new position
     if 0 <= new_position < len(board):
         # board[position], board[new_position] = "EMPTY", board[position]
         temp = board[position]
@@ -162,8 +183,7 @@ def is_game_over(board):
     """
     if "WKi" not in board or "BKi" not in board:
         return True
-    else:
-        return False
+    return False
 
 
 def whos_the_winner(board):
@@ -177,10 +197,9 @@ def whos_the_winner(board):
     """
     if "WKi" not in board:
         return "Black"
-    elif "BKi" not in board:
+    if "BKi" not in board:
         return "White"
-    else:
-        return None
+    return None
 
 
 def test_create_board():
@@ -208,7 +227,7 @@ def test_printable_board():
     actual_output = printable_board(create_board())
 
     assert (
-        actual_output == expected_output
+            actual_output == expected_output
     ), f"Expected: \n{expected_output}\nBut got: \n{actual_output}"
 
 

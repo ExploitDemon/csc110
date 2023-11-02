@@ -1,4 +1,4 @@
-#def string_to_even_list(string):
+# def string_to_even_list(string):
 #    list  = []
 #    for char in string:
 #        if char.isnumeric():
@@ -13,12 +13,9 @@ def remove_odds(numbers):
             numbers.remove(number)
 
 
-
-
 def main():
-#    print(string_to_even_list("12343asfasrfd"))
-    print(remove_odds([1,2,3,4,5,6,7,8,9,10]))
+    #    print(string_to_even_list("12343asfasrfd"))
+    print(remove_odds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+
 
 main()
-
-
