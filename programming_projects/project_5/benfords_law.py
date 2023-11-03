@@ -1,29 +1,9 @@
 """
 Cole Leavitt
-CSC110 Project -5
-
-This module contains functions to analyze
-the distribution of leading digits in a dataset, and check if it follows
-Benford's Law.
-
-The module includes the following functions:
-
-1. csv_to_list(file_name): Reads a CSV file and converts the data into a list
-of strings.
-
-2. count_start_digits(list_of_numbers): Counts the frequency of each leading
-digit (1-9) in the list of numbers.
-
-3. digit_percentages(counts): Calculates the percentage of each leading digit
-in the dataset.
-
-4. check_benfords_law(percentages): Checks whether the calculated percentages
-follow Benford's Law within a certain tolerance.
-
-The main function reads data from a CSV file, calculates the frequency and
-percentage of leading digits, and checks if the distribution follows
-Benford's Law. It also prints the results.
-
+CSC110 Project 5
+ This module contains functions to analyze
+    the distribution of leading digits in a dataset, and check if it follows
+    Benford's Law.
 """
 
 
@@ -37,12 +17,17 @@ def csv_to_list(file_name):
     Returns:
         list: A list of strings representing the data in the CSV file.
     """
-    with open(file_name, "r", encoding="UTF-8") as file:
-        data = []
-        for line in file:
-            elements = line.replace("\n", "").split(",")
-            for element in elements:
-                if element.isdigit() or element.replace(".", "", 1).isdigit():
+    with open(file_name, "r", encoding="UTF-8") as file:  # Open file with
+        # UTF-8 encoding
+        data = []  # Initialize an empty list to store elements
+        for line in file:  # for each line in the file
+            elements = line.replace("\n", "").split(",")  # replace new line
+            # expression with nothing and also split at commas
+            for element in elements:  # iterate over the elements since we split
+                if element.isdigit() or (
+                        element.replace(".", "",
+                                        1).isdigit()):  # if the element
+                    # is a digit
                     element = float(element)
                     if element >= 1:  # Skip numbers less than 1
                         # Check if the number is an integer
@@ -116,7 +101,8 @@ def check_benfords_law(percentages):
     """
     benfords_law = {1: 30, 2: 17, 3: 12, 4: 9, 5: 7, 6: 6, 7: 5, 8: 5, 9: 4}
     for digit, percentage in percentages.items():
-        if not (benfords_law[digit] - 10 <= percentage <= benfords_law[digit] + 10):
+        if not (benfords_law[digit] - 10 <= percentage <=
+                benfords_law[digit] + 10):
             return False
     return True
 
