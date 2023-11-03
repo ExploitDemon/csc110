@@ -15,12 +15,12 @@ def csv_to_list(file_name):
         file_name (str): The name of the CSV file.
 
     Returns:
-        list: A list of strings representing the data in the CSV file.
+        data (list): A list of strings representing the data in the CSV file.
     """
     with open(file_name, "r", encoding="UTF-8") as file:  # Open file with
         # UTF-8 encoding
-        data = []  # Initialize an empty list to store elements
-        for line in file:  # for each line in the file
+        data = []
+        for line in file:
             elements = line.replace("\n", "").split(",")  # replace new line
             # expression with nothing and also split at commas
             for element in elements:  # iterate over the elements since we split
@@ -45,8 +45,9 @@ def count_start_digits(list_of_numbers):
     Args:
         list_of_numbers (list): A list of numbers.
 
-    Returns: dict: A dictionary where the keys are the digits (1-9) and the
-    values are the counts of each digit.
+    Returns:
+        counts (dict): A dictionary where the keys are the digits (1-9) and the
+            values are the counts of each digit.
     """
     counts = {}
     for i in range(1, 10):
@@ -66,11 +67,13 @@ def digit_percentages(counts):
     """
     Calculates the percentage of each leading digit in the dataset.
 
-    Args: counts (dict): A dictionary where the keys are the digits (1-9) and
-    the values are the counts of each digit.
+    Args:
+        counts (dict): A dictionary where the keys are the digits (1-9) and
+            the values are the counts of each digit.
 
-    Returns: dict: A dictionary where the keys are the digits (1-9) and the
-    values are the percentages of each digit.
+    Returns:
+        percentages (dict): A dictionary where the keys are the digits (
+          1-9) and the values are the percentages of each digit.
     """
     total = sum(counts.values())
 
@@ -93,8 +96,9 @@ def check_benfords_law(percentages):
     Checks whether the calculated percentages follow Benford's Law within a
     certain tolerance.
 
-    Args: percentages (dict): A dictionary where the keys are the digits (
-    1-9) and the values are the percentages of each digit.
+    Args:
+        percentages (dict): A dictionary where the keys are the digits (
+            1-9) and the values are the percentages of each digit.
 
     Returns:
         bool: True if the data follows Benford's Law, False otherwise.
