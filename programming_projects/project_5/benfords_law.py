@@ -1,7 +1,7 @@
 """
 Cole Leavitt
 CSC110 Project 5
- This module contains functions to analyze
+This module contains functions to analyze
     the distribution of leading digits in a dataset, and check if it follows
     Benford's Law.
 """
