@@ -105,7 +105,8 @@ def check_benfords_law(percentages):
     """
     benfords_law = {1: 30, 2: 17, 3: 12, 4: 9, 5: 7, 6: 6, 7: 5, 8: 5, 9: 4}
     for digit, percentage in percentages.items():
-        if not (benfords_law[digit] - 10 <= percentage <= benfords_law[digit] + 10):
+        if not (benfords_law[digit] - 10 <= percentage <=
+                benfords_law[digit] + 10):
             return False
     return True
 
