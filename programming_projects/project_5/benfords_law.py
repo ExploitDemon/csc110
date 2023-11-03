@@ -17,24 +17,32 @@ def csv_to_list(file_name):
     Returns:
         data (list): A list of strings representing the data in the CSV file.
     """
-    with open(file_name, "r", encoding="UTF-8") as file:  # Open file with
-        # UTF-8 encoding
+    # Open the file with UTF-8 encoding
+    with open(file_name, "r", encoding="UTF-8") as file:
+        # Initialize an empty list to store the data
         data = []
+        # Iterate over each line in the file
         for line in file:
-            elements = line.replace("\n", "").split(",")  # replace new line
-            # expression with nothing and also split at commas
-            for element in elements:  # iterate over the elements since we split
-                if element.isdigit() or (
-                    element.replace(".", "", 1).isdigit()
-                ):  # if the element
-                    # is a digit
+            # Remove new line characters and split the line at commas
+            elements = line.replace("\n", "").split(",")
+            # Iterate over each element in the line
+            for element in elements:
+                # Check if the element is a digit
+                if element.isdigit() or element.replace(".", "", 1).isdigit():
+                    # Convert the element to a float
                     element = float(element)
-                    if element >= 1:  # Skip numbers less than 1
+                    # Skip numbers less than 1
+                    if element >= 1:
                         # Check if the number is an integer
                         if element.is_integer():
+                            # Convert the number to an integer and then to a
+                            #   string, and add it to the list
                             data.append(str(int(element)))
                         else:
+                            # Convert the number to a string and add it to
+                            #   the list
                             data.append(str(element))
+        # Return the list of data
         return data
 
 
@@ -49,17 +57,24 @@ def count_start_digits(list_of_numbers):
         counts (dict): A dictionary where the keys are the digits (1-9) and the
             values are the counts of each digit.
     """
+    # Initialize a dictionary to store the counts of each digit
     counts = {}
     for i in range(1, 10):
         counts[i] = 0
 
+    # Iterate over each number in the list
     for number in list_of_numbers:
+        # If the number starts with a zero, remove leading zeros and decimal
+        #   point
         if number[0] == "0":
-            number = number.lstrip("0.")  # Remove leading zeros and decimal
-            # point
-        if number:  # Check if number is not an empty string
+            number = number.lstrip("0.")
+            # Check if number is not an empty string
+        if number:
+            # Get the first digit of the number
             first_digit = int(str(number)[0])
+            # Increment the count of the first digit
             counts[first_digit] += 1
+    # Return the counts of each digit
     return counts
 
 
@@ -75,19 +90,28 @@ def digit_percentages(counts):
         percentages (dict): A dictionary where the keys are the digits (
           1-9) and the values are the percentages of each digit.
     """
-    total = sum(counts.values())
+    # Calculate the total count of all digits
+    total = 0
+    for value in counts.values():
+        total += value
 
+    # Initialize the percentages dictionary
+    percentages = {}
+
+    # If total count is zero, set all percentages to zero
     if total == 0:
-        percentages = {}
         for digit in counts.keys():
             percentages[digit] = 0
     else:
-        percentages = {}
+        # Calculate the percentage for each digit
         for digit, count in counts.items():
+            # Calculate the percentage and round it to 4 decimal places
             percentage = round((count / total) * 100, 4)
+            # Round the percentage to 2 decimal places
             percentage = round(percentage, 2)
+            # Store the percentage in the dictionary
             percentages[digit] = percentage
-
+    # Return the percentages of the digits
     return percentages
 
 
@@ -104,9 +128,11 @@ def check_benfords_law(percentages):
         bool: True if the data follows Benford's Law, False otherwise.
     """
     benfords_law = {1: 30, 2: 17, 3: 12, 4: 9, 5: 7, 6: 6, 7: 5, 8: 5, 9: 4}
+    # Compare each calculated percentage with the expected percentage
+    #   according to Benford's Law
     for digit, percentage in percentages.items():
-        if not (benfords_law[digit] - 10 <= percentage <=
-                benfords_law[digit] + 10):
+        if not (benfords_law[digit] - 10 <= percentage
+                <= benfords_law[digit] + 10):
             return False
     return True
 
