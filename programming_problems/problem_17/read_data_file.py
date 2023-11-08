@@ -1,7 +1,7 @@
 def read_csv(file_name):
     result = {}
-    with open(file_name) as f:
-        for line in f:
+    with open(file_name, encoding="UTF-8") as file:
+        for line in file:
             values = line.strip().split(',')
             key = values[0]
             try:
