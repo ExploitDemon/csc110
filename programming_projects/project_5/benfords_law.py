@@ -90,6 +90,7 @@ def digit_percentages(counts):
         percentages (dict): A dictionary where the keys are the digits (
           1-9) and the values are the percentages of each digit.
     """
+
     # Calculate the total count of all digits
     total = 0
     for value in counts.values():
