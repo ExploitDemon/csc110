@@ -8,41 +8,32 @@ This module contains functions to analyze
 
 
 def csv_to_list(file_name):
-    """
-    Reads a CSV file and converts the data into a list of strings.
+    def replace_with_for_loop(original_string, old_char, new_char, count=None):
+        new_string = ""
+        replaced_count = 0
+        for char in original_string:
+            if char == old_char:
+                if count is None or replaced_count < count:
+                    replaced_count += 1
+                else:
+                    new_string += char
+            else:
+                new_string += char
+        return new_string
 
-    Args:
-        file_name (str): The name of the CSV file.
-
-    Returns:
-        data (list): A list of strings representing the data in the CSV file.
-    """
-    # Open the file with UTF-8 encoding
     with open(file_name, "r", encoding="UTF-8") as file:
-        # Initialize an empty list to store the data
         data = []
-        # Iterate over each line in the file
         for line in file:
-            # Remove new line characters and split the line at commas
-            elements = line.replace("\n", "").split(",")
-            # Iterate over each element in the line
+            elements = replace_with_for_loop(line, "\n", "").split(",")
             for element in elements:
-                # Check if the element is a digit
-                if element.isdigit() or element.replace(".", "", 1).isdigit():
-                    # Convert the element to a float
+                if element.isdigit() or replace_with_for_loop(element, ".", "",
+                                                              1).isdigit():
                     element = float(element)
-                    # Skip numbers less than 1
                     if element >= 1:
-                        # Check if the number is an integer
                         if element.is_integer():
-                            # Convert the number to an integer and then to a
-                            #   string, and add it to the list
                             data.append(str(int(element)))
                         else:
-                            # Convert the number to a string and add it to
-                            #   the list
                             data.append(str(element))
-        # Return the list of data
         return data
 
 
@@ -67,7 +58,13 @@ def count_start_digits(list_of_numbers):
         # If the number starts with a zero, remove leading zeros and decimal
         #   point
         if number[0] == "0":
-            number = number.lstrip("0.")
+            # number = number.lstrip("0.")
+            numbers_modded = ""
+            for i in range(2, len(number)):
+                numbers_modded += number[i]
+
+            number = numbers_modded
+
             # Check if number is not an empty string
         if number:
             # Get the first digit of the number

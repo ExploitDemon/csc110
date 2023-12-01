@@ -19,7 +19,6 @@ def load_game():
     """
     # Open the file named "game.txt" in read mode
     with open("game.txt", "r", encoding="UTF-8") as game_file:
-
         # Initialize an empty dictionary to store the game data
         game = {}
 
@@ -29,7 +28,7 @@ def load_game():
             # first component is converted to an integer and used as a key in
             # the dictionary The rest of the components (if any) are stored
             # as a list of values
-            key, *values = line.strip().split('\t')
+            key, *values = line.strip().split("\t")
 
             # If the key is already in the dictionary, append each value to the
             # list associated with the key
@@ -69,15 +68,12 @@ def load_objects():
             # first two components are converted to integers and used as keys
             # in the dictionary. The third component is the object name. The
             # rest of the components (if any) are stored as a list of values.
-            key1, key2, obj_name, *value = line.strip().split('\t')
+            key1, key2, obj_name, *value = line.strip().split("\t")
 
             # Store the data in the dictionary. The keys are tuples
             # consisting of two integers and the object name. The values are
             # lists of strings.
             objects[(int(key1), int(key2), obj_name)] = value
-
-        # Close the file. This is important to free up system resources.
-        object_file.close()
 
         # Return the dictionary containing the loaded data.
     return objects
@@ -104,12 +100,12 @@ def load_travel_table():
             # first two components are converted to integers and used as keys
             # in the dictionary The rest of the components (if any) are
             # stored as a list of values
-            key1, key2, *value = line.strip().split('\t')
+            key1, key2, *value = line.strip().split("\t")
 
             # Store the data in the dictionary The keys are tuples consisting of
             # two integers The values are strings obtained by joining all the
             # strings in `value` with a space
-            travel_table[(int(key1), int(key2))] = ' '.join(value)
+            travel_table[(int(key1), int(key2))] = " ".join(value)
 
         # Close the file to free up system resources
         travel_file.close()
@@ -129,7 +125,6 @@ def print_instructions():
     """
     # Open the file named "instructions.txt" in read mode
     with open("instructions.txt", "r", encoding="UTF-8") as file:
-
         # Read the entire content of the file and print it
         print(file.read())
 
@@ -249,8 +244,9 @@ def play_game():
         if "exit" not in answer.lower():
             # player doesn't want to exit
             # get next location based on player's input
-            where_to_go = go_to_location(location, travel_table, objects,
-                                         player_objects, answer)
+            where_to_go = go_to_location(
+                location, travel_table, objects, player_objects, answer
+            )
             # if a possible location was found
             if where_to_go:
                 # change location
@@ -282,24 +278,23 @@ def main():
         # Call the function and store its return value in the variable 'objects'
         objects = load_objects()
         # Assert that 'objects' is a dictionary
-        assert isinstance(objects,
-                          dict), "load_objects() should return a dictionary"
+        assert isinstance(objects, dict), "load_objects() should return a dictionary"
         # Assert that 'objects' is not empty
-        assert len(
-            objects) > 0, ("load_objects()"
-                           " should return a non-empty dictionary")
+        assert len(objects) > 0, (
+            "load_objects()" " should return a non-empty dictionary"
+        )
 
         # Test the load_travel_table function Call the function and store its
         # return value in the variable 'travel_table'
         travel_table = load_travel_table()
         # Assert that 'travel_table' is a dictionary
-        assert isinstance(travel_table,
-                          dict), ("load_travel_table()"
-                                  " should return a dictionary")
+        assert isinstance(travel_table, dict), (
+            "load_travel_table()" " should return a dictionary"
+        )
         # Assert that 'travel_table' is not empty
-        assert len(
-            travel_table) > 0, ("load_travel_table() should"
-                                " return a non-empty ""dictionary")
+        assert len(travel_table) > 0, (
+            "load_travel_table() should" " return a non-empty " "dictionary"
+        )
 
         # Test the print_instructions function
         # Since this function prints instructions and does not return anything,
